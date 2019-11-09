@@ -15,8 +15,12 @@ $("ul").on("click","span", function(evt){
 $("input[type='text']").keypress(function(event){
     if(event.which === 13){
         var todoText = $(this).val();
-        var liString = '<li><span>X</span> ' + todoText +'</li>';
+        var liString = '<li><span><i class="fa fa-trash"></i></span> ' + todoText +'</li>';
         $("ul").append( liString );
         $(this).val("");
     }
+});
+
+$('.fa-plus').click(function(){
+    $("input[type='text']").fadeToggle();
 });
