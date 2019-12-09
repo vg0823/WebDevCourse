@@ -2,35 +2,13 @@ var express = require('express');
 var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+var Campground = require("./models/campground");
 
 mongoose.connect("mongodb://localhost/yelp_camp");
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs")
 app.use(express.static('./public'));
-
-var campgroundSchema = new mongoose.Schema({
-    name: String,
-    image: String,
-    description: String
-});
-
-var Campground = mongoose.model("Campground", campgroundSchema);
-
-// Campground.create(
-//     {
-//         name: "Mountain Goat's Rest",
-//         image:"images/1867275.png",
-//         description:"This is a mountain."
-//     }, function(err, campground){
-//         if(err){
-//             console.log(err);
-//         }  else {
-//             console.log("NEWLY CREATED CAMPGROUND");
-//             console.log(campground);
-//         }
-//     }
-// );
 
 app.get("/", function(req,res){
     res.send("landing");
